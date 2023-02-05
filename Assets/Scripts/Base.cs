@@ -18,8 +18,7 @@ public class Base : MonoBehaviour
         while (true)
         {
             yield return timer;
-            Quaternion rotator = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
-            //Quaternion rotator = Quaternion.Euler(0, 0, 0);
+            Quaternion rotator = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
             Instantiate(unitPrefab, transform.position, unitPrefab.transform.rotation * rotator);
         }
     }
