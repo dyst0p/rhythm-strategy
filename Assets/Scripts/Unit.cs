@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Unit : MonoBehaviour, IReflectable
 {
     [SerializeField] private float speed;
+
+    private Collider2D _motherCollider;
 
     void Awake()
     {
@@ -27,5 +30,16 @@ public class Unit : MonoBehaviour, IReflectable
     private void Register()
     {
         ZoneController.AddMover(this);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (_motherCollider == null)
+        {
+            _motherCollider = other;
+            return;
+        }
+        if(other != _motherCollider)
+            Destroy(gameObject);
     }
 }
